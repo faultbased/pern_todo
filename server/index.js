@@ -23,13 +23,13 @@ app.post("/todos", async (req, res) => {
   try {
     const { description } = req.body;
     const newTodo = await pool.query(
-<<<<<<< HEAD
+
       'INSERT INTO todo (description) VALUES ($1) RETURNING *',
       [description],
-=======
+
       "INSERT INTO todo (description) VALUES ($1) RETURNING *",
       [description]
->>>>>>> 3dcd7546c2825720a7f27bf4b70b1a96e5af98ba
+
     );
 
     res.json(newTodo);
@@ -40,15 +40,15 @@ app.post("/todos", async (req, res) => {
 
 // get all todos
 
-<<<<<<< HEAD
+
 app.get('/todos', async (req, res) => {
   try {
     const allTodos = await pool.query('SELECT * FROM todo');
-=======
+
 app.get("/todos", async (req, res) => {
   try {
     const allTodos = await pool.query("SELECT * FROM todo");
->>>>>>> 3dcd7546c2825720a7f27bf4b70b1a96e5af98ba
+
     res.json(allTodos.rows);
   } catch (err) {
     console.error(err.message);
@@ -57,17 +57,17 @@ app.get("/todos", async (req, res) => {
 
 // get a todo
 
-<<<<<<< HEAD
+
 app.get('/todos/:uid', async (req, res) => {
   try {
     const { uid } = req.params;
     const todo = await pool.query('SELECT * FROM todo WHERE uid = $1', [uid]);
-=======
+
 app.get("/todos/:uid", async (req, res) => {
   try {
     const { uid } = req.params;
     const todo = await pool.query("SELECT * FROM todo WHERE uid = $1", [uid]);
->>>>>>> 3dcd7546c2825720a7f27bf4b70b1a96e5af98ba
+
     res.json(todo.rows[0]);
     // calls upon uid variable
     console.log(req.params);
@@ -78,7 +78,7 @@ app.get("/todos/:uid", async (req, res) => {
 
 // update a todo
 
-/*
+
 app.put("/todos/:uid", async (req, res) => {
   try {
     const { uid } = req.params;
@@ -92,16 +92,16 @@ app.put("/todos/:uid", async (req, res) => {
     console.error(err.message);
   }
 });
-*/
+
 
 // delete a todo
 
 // in order to create server/to jumpstart it
 app.listen(5000, () => {
   // delivers msgs up confirmation of server connection
-<<<<<<< HEAD
+
   console.log('Server is up and running on port 5000');
-=======
+
   console.log("Server is up and running on port 5000");
->>>>>>> 3dcd7546c2825720a7f27bf4b70b1a96e5af98ba
+
 });
