@@ -23,13 +23,8 @@ app.post("/todos", async (req, res) => {
   try {
     const { description } = req.body;
     const newTodo = await pool.query(
-
-      'INSERT INTO todo (description) VALUES ($1) RETURNING *',
-      [description],
-
       "INSERT INTO todo (description) VALUES ($1) RETURNING *",
       [description]
-
     );
 
     res.json(newTodo);
@@ -39,11 +34,6 @@ app.post("/todos", async (req, res) => {
 });
 
 // get all todos
-
-
-app.get('/todos', async (req, res) => {
-  try {
-    const allTodos = await pool.query('SELECT * FROM todo');
 
 app.get("/todos", async (req, res) => {
   try {
@@ -56,12 +46,6 @@ app.get("/todos", async (req, res) => {
 });
 
 // get a todo
-
-
-app.get('/todos/:uid', async (req, res) => {
-  try {
-    const { uid } = req.params;
-    const todo = await pool.query('SELECT * FROM todo WHERE uid = $1', [uid]);
 
 app.get("/todos/:uid", async (req, res) => {
   try {
@@ -78,7 +62,6 @@ app.get("/todos/:uid", async (req, res) => {
 
 // update a todo
 
-
 app.put("/todos/:uid", async (req, res) => {
   try {
     const { uid } = req.params;
@@ -93,15 +76,10 @@ app.put("/todos/:uid", async (req, res) => {
   }
 });
 
-
 // delete a todo
 
 // in order to create server/to jumpstart it
 app.listen(5000, () => {
   // delivers msgs up confirmation of server connection
-
-  console.log('Server is up and running on port 5000');
-
   console.log("Server is up and running on port 5000");
-
 });
