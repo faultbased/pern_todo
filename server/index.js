@@ -77,9 +77,20 @@ app.put("/todos/:uid", async (req, res) => {
 });
 
 // delete a todo
+app.delete("/todos/:uid", async (req, res) => {
+  try {
+    const { uid } = req.params;
+    const deleteTodo = await pool.query("DELETE FROM todo WHERE uid = $1", [
+      uid,
+    ]);
+    res.json("todo was deleted!");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 // in order to create server/to jumpstart it
 app.listen(5000, () => {
   // delivers msgs up confirmation of server connection
-  console.log("Server is up and running on port 5000");
+  console.info("Server is up and running on port 5000");
 });
